@@ -8,8 +8,16 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login', // modulo  a ser carregado ao iniciar a aplicação
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'crud/:usuario', // para passar parâmetro ao navegar entre telas
+    loadChildren: () => import('./crud/crud.module').then( m => m.CrudPageModule)
   },
 ];
 

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crud</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]=true>
+
+  <div class="ion-text-center">
+    <h3>Cadastro</h3>
+    <h3>Usuário logado: {{ user }}</h3>
+
+    <form>
+
+      <ion-item>
+        <ion-label position="floating">Usuário</ion-label>
+        <ion-input type="text" name="usuario" [(ngModel)]="usuario"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" name="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" name="senha" [(ngModel)]="senha"></ion-input>
+      </ion-item>
+
+      <div class="ion-padding">
+        <ion-button expand="full" (click)="cadastrar(usuario, email, senha)">Cadastrar Usuário</ion-button>
+      </div>
+
+    </form>
+
+    <h4>Usuários Cadastrados</h4>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>ID</ion-col>
+        <ion-col>Usuário</ion-col>
+        <ion-col>Email</ion-col>
+        <ion-col>Senha</ion-col>
+        <ion-col>Ação</ion-col>
+      </ion-row>
+
+      <ion-item *ngFor="let item of results">
+        <ion-row>
+          <ion-col>{{ item.id }}</ion-col>
+          <ion-col (click)="atualizar('usuario', item.usuario, item.id)">{{ item.usuario }}</ion-col>
+          <ion-col (click)="atualizar('email', item.email, item.id)">{{ item.email }}</ion-col>
+          <ion-col (click)="atualizar('senha', item.senha, item.id)">{{ item.senha }}</ion-col>
+          <ion-col>
+            <ion-icon (click)="excluirUsuario(item.id)" name="trash"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-grid>
+
+
+
+  </div>
+
+</ion-content>
